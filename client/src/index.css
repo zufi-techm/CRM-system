@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+   font-family: Arial, Helvetica, sans-serif;
+}
+.bg-blue{
+   background: linear-gradient(to right, #054974,#2b2d7e);
+}
+.blue{
+   background: linear-gradient(to right, #054974,#2b2d7e);
+}
+
+@media (max-width: 640px) {
+   .bg-blue{
+      background:transparent;
+   }  
+   .new :nth-child(2){
+display: none;
+width: 10px;
+   }
+}
+.submit:disabled{
+ filter: opacity(0.1);
+ cursor: not-allowed;
+}
+.submit:not(:disabled){
+   filter: opacity(100);
+ cursor: pointer; 
+}
+
+.home{
+  transition: 2s ease-in-out;
+background: linear-gradient(to right, #054974,#2b2d7e);
+}
+nav{
+   z-index: 100;
+   background: linear-gradient(to right, #054974,#2b2d7e);
+ 
+}
+.view:hover::after{
+content: "view and edit customer ";
+position: absolute;
+background: black;
+padding-left: 10px;
+padding-right: 10px;
+border-radius: 20px ;
+font-size: 10px;
+margin-bottom: 25px;
+color: white;
+}
+ .profile:hover ::after{
+   content: "view your profile";
+   position: absolute;
+   background-color: black;
+   padding: 5px;
+   width: 100px;
+   border-radius: 20px;
+   font-size: 10px;
+   top: 20px;
+   right: 20px;
+}
+.new:hover::after{
+   content: "create new customer";
+   position: absolute;
+   background-color: black;
+   padding: 5px;
+   border-radius: 20px;
+   font-size: 10px;
+   top: 30px;
+   left: 20px;
+   width: 120px;
+   transition: 0.5s;
+}
+.new{
+   transition: 1s;
+}
+@keyframes move{
+0%{
+   right: -60px;
+}
+}
+@keyframes scale{
+   0%{
+      scale: 1.1;
+      box-shadow: 0px 0px 25px black;
+   }
+}
+.new:hover{
+transform: scale(1.05);
+background: linear-gradient(to right, #054974,#2b2d7e);
+}
+.profile{
+   transition: 1s;
+}
+.profile:hover{
+   scale: 1.1;
+}
+.home strong{
+   color: rgb(156, 182, 201);
+}
+ .form{
+   animation: move 1s ease-in;
+   position: fixed;
+   z-index: auto;
+   border-radius: 20px;
+   box-shadow: 0px 0px 2rem black;
+   background: linear-gradient(to right, #054974,#2b2d7e);
+}
+.text{
+min-height: 20px
+}
+.card{
+   transition: 1s ease-in-out;
+}
+.card:hover{
+   transform: scale(1.1);
+   background: linear-gradient(to right, #054974,#3638ac);
+}
