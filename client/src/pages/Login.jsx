@@ -34,7 +34,7 @@ const Login = () => {
         );
         setTimeout(() => {
           navigate("/profile");
-        }, 1500);
+        }, 100);
       });
   };
 
