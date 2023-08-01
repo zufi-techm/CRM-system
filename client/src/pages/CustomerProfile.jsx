@@ -21,12 +21,12 @@ const CustomerProfile = () => {
   const [id, setId] = useState(location.state ? location.state.id : undefined);
   const [custData, setCustData] = useState({});
   const [newData, setNewData] = useState({
-    firstname: "",
-    lastname: "",
-    email: "",
-    telephone: "",
-    lead_source: "",
-    gender: "",
+    firstname: custData.firstname,
+    lastname: custData.lastname,
+    email: custData.email,
+    telephone: custData.telephone ,
+      lead_source: custData.lead_source,
+    gender: custData.gender,
     age: "",
     description: "",
     imageUrl: "",
