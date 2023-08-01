@@ -27,9 +27,9 @@ const CustomerProfile = () => {
     telephone: custData.telephone ,
       lead_source: custData.lead_source,
     gender: custData.gender,
-    age: "",
-    description: "",
-    imageUrl: "",
+    age: custData.age,
+    description: custData.description,
+    imageUrl: custData.imageUrl,
     userOwner: owner,
   });
   const [showuPdatePage, setUpdatepage] = useState(false);
@@ -58,13 +58,6 @@ const CustomerProfile = () => {
       navigate("/");
     }
   }, []);
-  useEffect(() => {
-    if (id !== undefined) {
-      getCustomerProfile(id);
-    } else {
-      navigate("/");
-    }
-  }, [custData]);
 
   const onUpdate = async (e) => {
     try {
@@ -78,7 +71,7 @@ const CustomerProfile = () => {
           setUpdateMessage(res.data.message);
           setTimeout(() => {
             setUpdatepage(false);
-          }, 5000);
+          }, 100);
         })
         .catch((err) => console.log(err.message));
     } catch (error) {}
@@ -93,16 +86,14 @@ const CustomerProfile = () => {
           if (res.data.message.includes("delete")) {
             setTimeout(() => {
               navigate("/");
-            }, 500);
+            }, 100);
           }
         });
     } catch (error) {
-      console.log(error);
+      
     }
   };
-  const onSubmit = (e) => {
-    e.preventDefault();
-  };
+  
   return (
     <section className="blue relative">
       {showDeletePage && (
