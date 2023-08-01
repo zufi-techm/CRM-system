@@ -48,13 +48,6 @@ const Home = () => {
       navigate("/login");
     }
   }, []);
-  useEffect(() => {
-    if (owner !== undefined) {
-      getAllcustomers(owner.userId.toString());
-    } else {
-      navigate("/login");
-    }
-  }, [allCustomers]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -67,7 +60,8 @@ const Home = () => {
         .then((res) => {
           alert(res.data.message);
           if (res.data.message.includes("created")) {
-            setForm(false);
+            
+            window.location =window.location 
           }
         });
     } catch (error) {}
