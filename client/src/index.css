@@ -1,120 +1,104 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 *{
-   font-family: Arial, Helvetica, sans-serif;
+   outline: none;
+   font-family:Arial, Helvetica, sans-serif;
 }
-.bg-blue{
-   background: linear-gradient(to right, #054974,#2b2d7e);
+.bg{
+   background: linear-gradient(to right, skyblue,rgb(63, 14, 63));
+   min-height: 100vh;
 }
-.blue{
-   background: linear-gradient(to right, #054974,#2b2d7e);
+.btn{
+   background: linear-gradient(to right, rgb(36, 167, 220),rgb(38, 38, 236)); 
+   color: white;
+   border-radius: 100px;
+   padding: 8px;
 }
 
-@media (max-width: 640px) {
-   .bg-blue{
-      background:transparent;
-   }  
-   .new :nth-child(2){
-display: none;
-width: 10px;
-   }
-}
-.submit:disabled{
- filter: opacity(0.1);
+button:disabled{
+ background: rgb(83, 100, 214);
+ color: rgb(83, 100, 214);
+ position: relative;
  cursor: not-allowed;
-}
-.submit:not(:disabled){
-   filter: opacity(100);
- cursor: pointer; 
-}
-
-.home{
-  transition: 2s ease-in-out;
-background: linear-gradient(to right, #054974,#2b2d7e);
-}
-nav{
-   z-index: 100;
-   background: linear-gradient(to right, #054974,#2b2d7e);
- 
-}
-.view:hover::after{
-content: "view and edit customer ";
-position: absolute;
-background: black;
-padding-left: 10px;
-padding-right: 10px;
-border-radius: 20px ;
-font-size: 10px;
-margin-bottom: 25px;
-color: white;
-}
- .profile:hover ::after{
-   content: "view your profile";
-   position: absolute;
-   background-color: black;
-   padding: 5px;
-   width: 100px;
-   border-radius: 20px;
-   font-size: 10px;
-   top: 20px;
-   right: 20px;
-}
-.new:hover::after{
-   content: "create new customer";
-   position: absolute;
-   background-color: black;
-   padding: 5px;
-   border-radius: 20px;
-   font-size: 10px;
-   top: 30px;
-   left: 20px;
-   width: 120px;
-   transition: 0.5s;
-}
-.new{
-   transition: 1s;
-}
-@keyframes move{
-0%{
-   right: -60px;
-}
-}
-@keyframes scale{
-   0%{
-      scale: 1.1;
-      box-shadow: 0px 0px 25px black;
+ }
+ button:disabled::after{
+  content: "Added to cart";
+  color: white;
+  position: absolute;
    }
+.form{
+   height: 70vh;
+   border-radius: 10px;
+   width: 28%;
 }
-.new:hover{
-transform: scale(1.05);
-background: linear-gradient(to right, #054974,#2b2d7e);
+.formreg{
+   height: 85vh;
+   border-radius: 12px;
+   width: 28%;
 }
-.profile{
-   transition: 1s;
+.cartnum{
+   height: 25px;
+   width: 25px;
 }
-.profile:hover{
-   scale: 1.1;
+.navlink{
+   transition: 0.5s;
+   background-color: white;
+   padding: 4px 2px 4px 2px;
+border-radius: 1px;
 }
-.home strong{
-   color: rgb(156, 182, 201);
-}
- .form{
-   animation: move 1s ease-in;
-   position: fixed;
-   z-index: auto;
-   border-radius: 20px;
-   box-shadow: 0px 0px 2rem black;
-   background: linear-gradient(to right, #054974,#2b2d7e);
-}
-.text{
-min-height: 20px
+.navlink:hover{
+background-color: rgba(242, 237, 237, 0.593);
+box-shadow: 0px 0px 2px gray;
+padding: 2px 8px 2px 8px;
+border-radius: 20px;
 }
 .card{
-   transition: 1s ease-in-out;
+   width: 270px;
+   height: 350px;
 }
-.card:hover{
-   transform: scale(1.1);
-   background: linear-gradient(to right, #054974,#3638ac);
+.lightbg{
+   background-color: rgba(239, 236, 236, 0.241);
 }
+.btn-loading{
+filter: blur(0.2px);
+font-style: italic;
+}
+.btn-loading::after{
+   content: "loading...";
+   }
+.red{
+   background-color: red;
+}
+.blue{
+   background-color: blue;
+}
+.purple{
+   background-color: purple;
+}
+.grey{
+   background-color: grey;
+}
+.white{
+   background-color: white;
+   border: 1px solid black;
+}
+.black{
+   background-color: black;
+}
+thead{
+   color: purple;
+}
+tbody{
+   color: blue;
+}
+table,th,td{
+   border: 1px solid rgb(73, 73, 163);
+   text-align: center;
+  
+}
+table{
+   border: 3px solid rgb(31, 31, 162);
+   text-align: center;
+}
+

@@ -1,100 +1,79 @@
-import React, { useState } from "react";
-import bg from "../assets/bg.jpg";
-import reg from "../assets/register.svg";
-import Logo from "../components/Logo";
-import { Await, Link } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import { handleChange } from "../components/CollectFormData";
-import axios from "axios";
-const Login = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-  const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState("");
-  const [_, setCookie] = useCookies();
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios
-      .post("http://127.0.0.1:5000/auth/login", user)
-      .then(async (res) => {
-        if (res.data.message) {
-          setMessage("incorrect email or password");
-          return;
-        }
-        setMessage("Login successful");
-        setSuccess(true);
-        setCookie("token", res?.data?.token);
-        window.localStorage.setItem(
-          "user",
-          JSON.stringify({ userId: res?.data?.userId, name: res?.data?.name })
-        );
-        setTimeout(() => {
-          navigate("/profile");
-        }, 1500);
-      });
-  };
+import React, { useEffect, useState } from "react";
+import reg_img from "../assets/register.svg";
+import { Link, useNavigate } from "react-router-dom";
 
+import { LoginUser } from "../apiCalls/users";
+const Login = (v) => {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
+  const [success, setSuccess] = useState(false);
+  const onSubmit = async (e, values) => {
+    e.preventDefault();
+    try {
+      e.preventDefault();
+      const response = await LoginUser(values);
+      setMessage(response.message);
+      setSuccess(response.success);
+      if (response.success) {
+        localStorage.setItem("token", response.token);
+        navigate("/home");
+      } else {
+        throw new Error(response.message);
+      }
+    } catch (error) {
+      setMessage(error.message);
+    }
+  };
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home");
+    }
+  }, []);
   return (
-    <section className="bg min-h-screen w-screen text-white flex  items-center flex-col">
-      <div className="flex  w-full  justify-between p-4 items-center sm:absolute -top-10">
-        <img src={Logo} className="h-20 w-20 sm:h-32 sm:w-40" />
-        <Link
-          to={"/register"}
-          className="border-2 font-bold shadow-md   shadow-blue-950 border-white text-white p-2 px-6 rounded-md"
+    <div className="bg flex items-center justify-center">
+      <form
+        onSubmit={(e) => onSubmit(e, { email, password })}
+        action=""
+        className="bg-white w-1/3 form flex flex-col items-center justify-between p-4 px-8 shadow-md shadow-black rounded-sm"
+      >
+        <img src={reg_img} className="h-32 w-32 rounded-full" />
+        <h2 className="font-bold text-blue-800 text-2xl">
+          Login to start shopping
+        </h2>
+        <p
+          className={`text-xs font-semibold ${
+            success ? "text-green-600" : "text-red-600"
+          }`}
         >
-          Register
-        </Link>
-      </div>
-      <div className="flex w-full bg-blue sm:w-1/3 sm:shadow-lg sm:shadow-black sm:rounded-lg flex-col  items-center mt-16  sm:p-6 sm:pb-8">
-        <div className="font-bold mb-4 text-xl">Login to your account</div>
-        <img src={reg} className="h-32 w-32 rounded-full" />
-        <form
-          autoComplete="off"
-          encType="multipart/form-data"
-          className="flex mt-10 w-full flex-col items-center"
-        >
-          <p
-            style={
-              success
-                ? { color: "green", fontWeight: "600" }
-                : { color: "red", fontWeight: "600" }
-            }
-          >
-            {message}
-          </p>
+          {message}
+        </p>
+        <div className="flex flex-col gap-2 w-full">
           <input
+            onChange={(e) => setEmail(e.target.value)}
             type="email"
-            placeholder="Email"
             name="email"
-            onChange={(e) => handleChange(e, user, setUser)}
-            className="w-3/4 mt-8 rounded-md  pb-2 pl-2 outline-none bg-transparent sm:border-b-4 border-b-2 sm:text-xl"
+            placeholder="email"
+            className="border-b-2  text-gray-900 font-semibold border-gray-500 w-full px-2 m-2 pb-1"
           />
           <input
+            onChange={(e) => setPassword(e.target.value)}
             type="password"
-            placeholder="Password"
             name="password"
-            onChange={(e) => handleChange(e, user, setUser)}
-            className="w-3/4 rounded-md mt-8  pb-2 pl-2 outline-none bg-transparent sm:border-b-4 border-b-2 sm:text-xl"
+            placeholder="password"
+            className="border-b-2 text-gray-900 font-semibold border-gray-500 w-full px-2 m-2 pb-1"
           />
-          <input
-            type="submit"
-            value="Login"
-            onClick={(e) => onSubmit(e)}
-            className="w-1/3 mt-14  sm:mt-4 font-bold shadow-md shadow-blue-950  outline-none bg-white text-blue-950 border-2 p-2 rounded-md "
-          />
-          <div className="flex items-center gap-2 mt-10 text-xs sm:text-base">
-            <p>Already have an account?</p>
-            <Link to={"/register"} className="text-blue-500 font-bold p-2">
-              Create Account
-            </Link>
-          </div>
-        </form>
-      </div>
-    </section>
+        </div>
+        <button className="btn  w-1/2 p-2 font-bold">Login</button>
+        <div className="text-xs font-semibold">
+          Do not have and account?{" "}
+          <Link to={"/register"} className="text-blue-600">
+            Register
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 };
 
