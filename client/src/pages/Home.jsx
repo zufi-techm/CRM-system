@@ -60,8 +60,7 @@ const Home = () => {
         .then((res) => {
           alert(res.data.message);
           if (res.data.message.includes("created")) {
-            
-            window.location =window.location 
+            window.location = window.location;
           }
         });
     } catch (error) {}

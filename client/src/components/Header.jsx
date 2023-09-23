@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { BsCart, BsChevronDown } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import accountAvatar from "../assets/account-avatart.png";
 import s1 from "../assets/s1.webp";
 import s2 from "../assets/s2.webp";
 import s3 from "../assets/es2.png";
 import Nav from "./Nav";
 const Header = ({ username, showSearch }) => {
+  const navigate = useNavigate();
   const images = [
     {
       src: "https://i.ebayimg.com/thumbs/images/g/jHMAAOSwpJRdwzg8/s-l960.webp",
@@ -60,7 +61,14 @@ const Header = ({ username, showSearch }) => {
               <h1 className="text-4xl font-extrabold ">{img.header}</h1>
               <p className="text-xl italic font-bold">{img.text}</p>
             </div>
-            <button className="text-xl font-bold text-white btn bg-black py-2 rounded-full hover:bg-gray-950 shadow-sm w-1/2 shadow-black">
+            <button
+              onClick={() =>
+                navigate("/product", {
+                  state: { id: "650a1b9e830530476d5f6f8b" },
+                })
+              }
+              className="text-xl font-bold text-white btn bg-black py-2 rounded-full hover:bg-gray-950 shadow-sm w-1/2 shadow-black"
+            >
               shop now
             </button>
           </div>

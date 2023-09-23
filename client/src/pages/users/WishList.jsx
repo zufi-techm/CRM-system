@@ -12,15 +12,15 @@ const WishList = () => {
     getlist();
   }, []);
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-blue-100">
       <Nav />
       <section className="pt-20">
         {!list ? (
-          <div className="bg-gray-200 text-gray-900 capitalize text-2xl font-bold h-screen">
+          <div className="bg-blue-100 text-gray-900 capitalize text-2xl font-bold h-screen">
             no items
           </div>
         ) : (
-          <div className="bg-gray-200 grid grid-cols-4">
+          <div className=" grid grid-cols-4 bg-blue-100 h-full">
             {list.map((el, i) => {
               return <ProductInWishlist key={i} product={el} />;
             })}

@@ -10,7 +10,9 @@ const Nav = ({ username, showSearch, iterate }) => {
   const searchProduct = async () => {
     try {
       if (value) {
-        await SearchProduct(value).then((r) => setSearchResult(r));
+        await SearchProduct(value).then((r) => {
+          r === null ? setSearchResult(null) : setSearchResult(r);
+        });
       }
     } catch (error) {
       console.log(error.message);

@@ -3,14 +3,15 @@
 @tailwind utilities;
 *{
    outline: none;
-   font-family:Arial, Helvetica, sans-serif;
+   font-family: "Constantia",Comic Sans MS,Arial;
+   transition: 0.5s all ease;
 }
 .bg{
    background: linear-gradient(to right, skyblue,rgb(63, 14, 63));
    min-height: 100vh;
 }
 .btn{
-   background: linear-gradient(to right, rgb(36, 167, 220),rgb(38, 38, 236)); 
+   background: linear-gradient(to right, rgb(71, 142, 171),rgb(95, 95, 192)); 
    color: white;
    border-radius: 100px;
    padding: 8px;

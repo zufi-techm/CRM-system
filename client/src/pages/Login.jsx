@@ -1,51 +1,10 @@
-<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import reg_img from "../assets/register.svg";
 import { Link, useNavigate } from "react-router-dom";
-=======
-import React, { useState } from "react";
-import bg from "../assets/bg.jpg";
 import reg from "../assets/register.svg";
-import Logo from "../components/Logo";
-import { Await, Link } from "react-router-dom";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
-import { handleChange } from "../components/CollectFormData";
-import axios from "axios";
-const Login = () => {
-  const navigate = useNavigate();
-  const [user, setUser] = useState({
-    email: "",
-    password: "",
-  });
-  const [success, setSuccess] = useState(false);
-  const [message, setMessage] = useState("");
-  const [_, setCookie] = useCookies();
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios
-      .post("http://127.0.0.1:5000/auth/login", user)
-      .then(async (res) => {
-        if (res.data.message) {
-          setMessage("incorrect email or password");
-          return;
-        }
-        setMessage("Login successful");
-        setSuccess(true);
-        setCookie("token", res?.data?.token);
-        window.localStorage.setItem(
-          "user",
-          JSON.stringify({ userId: res?.data?.userId, name: res?.data?.name })
-        );
-        setTimeout(() => {
-          navigate("/profile");
-        }, 100);
-      });
-  };
->>>>>>> 2136f94be219d36cbab6561cf9bf30a6fea4bf9f
 
 import { LoginUser } from "../apiCalls/users";
-const Login = (v) => {
+const Login = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

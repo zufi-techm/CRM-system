@@ -36,7 +36,7 @@ const AllUsers = () => {
         </div>
       </div>
 
-      <table className="text-blue-800 mt-20 mb-10  rounded-md  w-3/4 bg-gray-200">
+      <table className="text-blue-800 mt-20 mb-10  rounded-md  w-3/4 bg-blue-100">
         <thead>
           <tr>
             <th>Name</th>
@@ -45,6 +45,7 @@ const AllUsers = () => {
             <th>Role</th>
             <th>Orders</th>
             <th>Created</th>
+            <th>Delete</th>
           </tr>
         </thead>
         <tbody>
