@@ -11,7 +11,9 @@ const Filters = ({ products }) => {
   return (
     <section className="bg-blue-100 p-4 mt-4 text-center">
       {!products ? (
-        <div className="text-2xl font-bold">No products</div>
+        <div className="text-2xl font-bold h-60 flex items-center justify-center text-blue-600">
+          No products
+        </div>
       ) : (
         <div className="grid grid-cols-4">
           {products?.map((product) => {

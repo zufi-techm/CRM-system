@@ -18,7 +18,9 @@ export const Getproduct = async (value) => {
     );
     return response.data;
   } catch (error) {
-    alert(error.message);
+    if (error.message) {
+      return;
+    }
   }
 };
 export const DeleteProduct = async (id) => {
@@ -49,7 +51,9 @@ export const GetCategory = async (value) => {
     );
     return response.data;
   } catch (error) {
-    alert(error.message);
+    if (error.message) {
+      return;
+    }
   }
 };
 export const GetBrand = async (value) => {
@@ -59,7 +63,9 @@ export const GetBrand = async (value) => {
     );
     return response.data;
   } catch (error) {
-    alert(error.message);
+    if (error.message) {
+      return;
+    }
   }
 };
 
@@ -92,7 +98,9 @@ export const GetCart = async () => {
     );
     return response.data;
   } catch (error) {
-    alert(error.message);
+    if (error.message) {
+      return;
+    }
   }
 };
 export const Addtowishlist = async (payload) => {

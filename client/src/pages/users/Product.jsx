@@ -71,7 +71,7 @@ const Product = () => {
   return (
     <div className="bg-white h-screen">
       <Nav />
-      {product && (
+      {product ? (
         <section className="flex  h-full pt-20 pb-10 px-10 bg-blue-100">
           <div className="h-full flex bg-white p-2 shadow-sm shadow-black w-full  rounded-md">
             <img src={product.image} className="h-full  w-1/2" />
@@ -138,6 +138,18 @@ const Product = () => {
             </div>
           </div>
         </section>
+      ) : (
+        <div className="h-screen z-50 flex justify-center font-bold text-blue-600 items-center gap-4 flex-col text-2xl bg-blue-100 fixed w-full top-0 left-0 right-0 bottom-0">
+          Network Error
+          <button
+            className="bg-blue-600 text-white p-2 text-xl  w-36 rounded-full"
+            onClick={() => {
+              window.location = window.location;
+            }}
+          >
+            Retry
+          </button>
+        </div>
       )}
     </div>
   );

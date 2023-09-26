@@ -92,7 +92,10 @@ const Home = ({ children }) => {
                 onFocus={() => setGo(true)}
                 className="w-3/4 pl-2 text-base font-normal  h-full rounded-s-full"
               />
-              <button className="w-1/4 bg-blue-800 h-full rounded-e-full text-white  hover:bg-blue-900 font-bold">
+              <button
+                onClick={() => navigate("/login")}
+                className="w-1/4 bg-blue-800 h-full rounded-e-full text-white  hover:bg-blue-900 font-bold"
+              >
                 {go ? "Go" : "search"}
               </button>
             </div>

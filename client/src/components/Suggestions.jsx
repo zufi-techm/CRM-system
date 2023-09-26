@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { BsArrowBarRight, BsArrowRight } from "react-icons/bs";
+import {
+  BsArrowBarRight,
+  BsArrowDownCircle,
+  BsArrowRight,
+  BsHddNetwork,
+} from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import ProductCard from "./ProductCard";
 import { GetCategory } from "../apiCalls/products";
@@ -16,22 +21,32 @@ const Suggestions = () => {
   };
 
   const getLaptops = async () => {
-    await GetCategory("laptop").then((response) =>
-      setLaptops(response.products)
-    );
+    try {
+      await GetCategory("laptop").then(
+        (response) => response.products && setLaptops(response.products)
+      );
+    } catch (error) {
+      setLaptops(undefined);
+    }
   };
   const getHeadphones = async () => {
-    await GetCategory("headphone").then((response) =>
-      setHeadphones(response.products)
-    );
+    try {
+      await GetCategory("headphone").then((response) =>
+        setHeadphones(response.products)
+      );
+    } catch (error) {
+      setLaptops(undefined);
+    }
   };
   useEffect(() => {
     getLaptops();
     getHeadphones();
+    console.log(laptops, headphones);
   }, []);
+
   return (
     <section className="bg-blue-100 p-4 mt-6">
-      {laptops && (
+      {laptops ? (
         <>
           <div className="font-black text-3xl capitalize text-blue-800 m-2 my-5 p-2">
             laptops for you!
@@ -48,7 +63,20 @@ const Suggestions = () => {
             })}
           </section>
         </>
+      ) : (
+        <div className="h-screen z-50 flex justify-center font-bold text-blue-600 items-center gap-4 flex-col text-2xl bg-blue-100 fixed w-full top-0 left-0 right-0 bottom-0">
+          Network Error
+          <button
+            className="bg-blue-600 text-white p-2 text-xl  w-36 rounded-full"
+            onClick={() => {
+              window.location = window.location;
+            }}
+          >
+            Retry
+          </button>
+        </div>
       )}
+
       {headphones && (
         <>
           <div className="font-black text-3xl capitalize text-blue-800 m-2 my-5 p-2">

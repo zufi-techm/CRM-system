@@ -34,7 +34,7 @@ const ProtectedPage = ({ children }) => {
 
   const handleFilterCat = async (value) => {
     await GetCategory(value).then((response) => {
-      if (response.products.length > 0) {
+      if (response?.products?.length > 0) {
         setFilterResult(response.products);
       } else {
         setFilterResult("none");
